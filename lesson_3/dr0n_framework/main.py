@@ -1,5 +1,5 @@
 import quopri
-from requests import GetRequests, PostRequests
+from dr0n_framework.requests import GetRequests, PostRequests
 
 
 class PageNotFound404:
