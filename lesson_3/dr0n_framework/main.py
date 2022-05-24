@@ -30,11 +30,11 @@ class Framework:
         if method == 'POST':
             data = PostRequests().get_request_params(environ)
             request['data'] = data
-            print(f'Нам пришёл post-запрос: {Framework.decode_value(data)}')
+            print(f'Пришёл POST-запрос: {Framework.decode_value(data)}')
         if method == 'GET':
             request_params = GetRequests().get_request_params(environ)
             request['request_params'] = request_params
-            print(f'Нам пришли GET-параметры: {request_params}')
+            print(f'Пришли GET-параметры: {request_params}')
 
         # Находим нужный контроллер
         if path in self.routes_lst:
