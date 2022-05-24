@@ -8,7 +8,7 @@ def render(template_name, folder='templates', **kwargs):
     :param kwargs: параметры для передачи в шаблон
     :return:
     """
-    env = Environment()
-    env.loader = FileSystemLoader(folder)
-    template = env.get_template(template_name)
+    environ = Environment()
+    environ.loader = FileSystemLoader(folder)
+    template = environ.get_template(template_name)
     return template.render(**kwargs)
