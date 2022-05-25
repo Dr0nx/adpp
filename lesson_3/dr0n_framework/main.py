@@ -38,9 +38,7 @@ class Framework:
         elif path_info.startswith(self.settings.STATIC_URL):
             # /static/images/logo.jpg/ -> images/logo.jpg
             file_path = path_info[len(self.settings.STATIC_URL):len(path_info) - 1]
-            print(file_path)
             content_type = self.get_content_type(file_path)
-            print(content_type)
             code, body = self.get_static(self.settings.STATIC_FILES_DIR,
                                          file_path)
         else:
@@ -67,7 +65,6 @@ class Framework:
     def get_content_type(file_path, content_types_map=CONTENT_TYPES_MAP):
         file_name = path.basename(file_path).lower()  # styles.css
         extension = path.splitext(file_name)[1]  # .css
-        print(extension)
         return content_types_map.get(extension, "text/html")
 
     @staticmethod
