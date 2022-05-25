@@ -3,20 +3,20 @@
 {% block style %}{% include "inc-style.html" %}{% endblock %}
 {% block menu %}{% include "inc-menu.html" %}{% endblock %}
 {% block body %}
-<form action="" method="post" id="contacts">
+<form action="" method="post">
     <div class="form-group">
-        <label for="formGroupExampleInput">Тема сообщения:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Различный текст">
+        <label for="subject">Тема сообщения:</label>
+        <input type="text" class="form-control" id="subject" placeholder="Различный текст" name="subject">
     </div>
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Текст:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <label for="text">Текст:</label>
+        <textarea class="form-control" id="text" rows="3" name="text"></textarea>
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Email:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Введи email">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введи email"
+               name="email">
     </div>
-    <button type="submit" class="btn btn-primary">Поехали!</button>
+    <button type="submit" value="Submit" class="btn btn-primary">Поехали!</button>
 </form>
 {% endblock %}
