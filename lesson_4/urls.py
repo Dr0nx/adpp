@@ -1,9 +1,7 @@
+# Набор привязок: путь-контроллер
 from views import Index, About, Contacts, StudyPrograms, CoursesList, \
     CreateCourse, CreateCategory, CategoryList
 
-# Набор привязок: путь-контроллер
-from views import Index, About, StudyPrograms, CoursesList, \
-    CreateCourse, CreateCategory, CategoryList
 
 # Набор привязок: путь-контроллер
 routes = {
