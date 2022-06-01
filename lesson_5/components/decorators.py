@@ -1,6 +1,6 @@
 # Декоратор для реализации маршрутизации
 class AppRoute:
-    def __int__(self, routes, url):
+    def __init__(self, routes, url):
         """
         Сохраняем значение переданного параметра
         :param routes:
