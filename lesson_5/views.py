@@ -1,5 +1,6 @@
 from datetime import date
 
+from components.cbv import ListView, CreateView
 from components.decorators import AppRoute
 from components.models import Engine
 from dr0n_framework.templator import render
@@ -15,11 +16,11 @@ class Index:
         return '200 OK', render('index.html', objects_list=site.categories)
 
 
-# Класс-контроллер - Страница "О проекте"
-@AppRoute(routes=routes, url='/about/')
+# Класс-контроллер - Страница "Контакты"
+@AppRoute(routes=routes, url='/contacts/')
 class About:
     def __call__(self, request):
-        return '200 OK', render('about.html')
+        return '200 OK', render('contacts.html')
 
 
 # Класс-контроллер - Страница "Расписания"
@@ -74,7 +75,6 @@ class CreateCourse:
                                     objects_list=category.courses,
                                     name=category.name,
                                     id=category.id)
-
         else:
             try:
                 self.category_id = int(request['request_params']['id'])
@@ -86,6 +86,7 @@ class CreateCourse:
                                         id=category.id)
             except KeyError:
                 return '200 OK', 'No categories have been added yet'
+
 
 # Класс-контроллер - Страница "Создать категорию"
 @AppRoute(routes=routes, url='/create-category/')
@@ -126,3 +127,43 @@ class CategoryList:
     def __call__(self, request):
         return '200 OK', render('category_list.html',
                                 objects_list=site.categories)
+
+
+# Класс-контроллер - Страница "Список студентов"
+@AppRoute(routes=routes, url='/student-list/')
+class StudentListView(ListView):
+    queryset = site.students
+    template_name = 'student_list.html'
+
+
+# Класс-контроллер - Страница "Создать студента"
+@AppRoute(routes=routes, url='/create-student/')
+class StudentCreateView(CreateView):
+    template_name = 'create_student.html'
+
+    def create_obj(self, data: dict):
+        name = data['name']
+        name = site.decode_value(name)
+        new_obj = site.create_user('student', name)
+        site.students.append(new_obj)
+
+
+# Класс-контроллер - Страница "Добавить студента на курс"
+@AppRoute(routes=routes, url='/add-student/')
+class AddStudentByCourseCreateView(CreateView):
+    template_name = 'add_student.html'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['courses'] = site.courses
+        context['students'] = site.students
+        return context
+
+    def create_obj(self, data: dict):
+        course_name = data['course_name']
+        course_name = site.decode_value(course_name)
+        course = site.get_course(course_name)
+        student_name = data['student_name']
+        student_name = site.decode_value(student_name)
+        student = site.get_student(student_name)
+        course.add_student(student)
