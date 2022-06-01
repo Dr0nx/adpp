@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+Создание курса
+{% endblock %}
+{% block style %}
+{% include "inc-style.html" %}
+{% endblock %}
+{% block menu %}
+{% include "inc-menu.html" %}
+{% endblock %}
+{% block body %}
+<br>
+<p>
+    <a href="/create-student/" class="btn btn-outline-primary">Создать студента</a>
+    <a href="/add-student/" class="btn btn-outline-primary">Добавить студента на курс</a>
+</p>
+<h4>Добавление студента на курс</h4>
+<form method="post">
+    <select class="form-select" multiple aria-label="multiple select example" name="course_name" size="5">
+        {% for item in courses %}
+        <option value="{{item.name}}">{{item.name}}</option>
+        {% endfor %}
+    </select>
+    <select class="form-select" multiple aria-label="multiple select example" name="student_name">
+        {% for item in students %}
+        <option value="{{item.name}}">{{item.name}}</option>
+        {% endfor %}
+    </select>
+    <div class="col-auto my-1">
+        <button class="btn btn-primary" type="submit">Записать</button>
+    </div>
+</form>
+{% endblock %}
