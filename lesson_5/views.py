@@ -130,10 +130,17 @@ class CategoryList:
 
 
 # Класс-контроллер - Страница "Список студентов"
+
+# @AppRoute(routes=routes, url='/student-list/')
+# class StudentListView(ListView):
+#     queryset = site.students
+#     template_name = 'student_list.html'
+
 @AppRoute(routes=routes, url='/student-list/')
-class StudentListView(ListView):
-    queryset = site.students
-    template_name = 'student_list.html'
+class StudentListView:
+    def __call__(self, request):
+        return '200 OK', render('student_list.html',
+                                objects_list=site.students)
 
 
 # Класс-контроллер - Страница "Создать студента"
@@ -159,7 +166,7 @@ class AddStudentByCourseCreateView(CreateView):
         context['students'] = site.students
         return context
 
-    def create_obj(self, data: dict):
+    def create_obj(self, data):
         course_name = data['course_name']
         course_name = site.decode_value(course_name)
         course = site.get_course(course_name)
