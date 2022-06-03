@@ -1,4 +1,4 @@
-from templator import render
+from dr0n_framework.templator import render
 
 
 # Класс-контроллер для простейшего рендеринга HTML-шаблонов
