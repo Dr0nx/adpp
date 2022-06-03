@@ -22,7 +22,7 @@ class UserFactory:
 
     # порождающий паттерн Фабричный метод
     @classmethod
-    def create(cls, type_, name):
+    def create_factory(cls, type_, name):
         return cls.types[type_](name)
 
 
@@ -63,7 +63,7 @@ class CourseFactory:
 
     # порождающий паттерн Фабричный метод
     @classmethod
-    def create(cls, type_, name, category):
+    def create_factory(cls, type_, name, category):
         return cls.types[type_](name, category)
 
 
@@ -94,7 +94,7 @@ class Engine:
 
     @staticmethod
     def create_user(type_, name):
-        return UserFactory.create(type_, name)
+        return UserFactory.create_factory(type_, name)
 
     @staticmethod
     def create_category(name, category=None):
@@ -108,7 +108,7 @@ class Engine:
 
     @staticmethod
     def create_course(type_, name, category):
-        return CourseFactory.create(type_, name, category)
+        return CourseFactory.create_factory(type_, name, category)
 
     def get_course(self, name):
         for item in self.courses:
