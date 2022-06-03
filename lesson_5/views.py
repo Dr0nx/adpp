@@ -1,6 +1,6 @@
 from datetime import date
 
-from components.cbv import ListView, CreateView
+from components.cbv import CreateView
 from components.decorators import AppRoute
 from components.models import Engine
 from dr0n_framework.templator import render
@@ -14,6 +14,12 @@ routes = dict()
 class Index:
     def __call__(self, request):
         return '200 OK', render('index.html', objects_list=site.categories)
+
+
+# @AppRoute(routes=routes, url='/')
+# class Index(ListView):
+#     queryset = site.categories
+#     template_name = 'index.html'
 
 
 # Класс-контроллер - Страница "Контакты"
