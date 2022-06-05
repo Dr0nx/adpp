@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+Создание курса
+{% endblock %}
+{% block style %}
+{% include "inc-style.html" %}
+{% endblock %}
+{% block menu %}
+{% include "inc-menu.html" %}
+{% endblock %}
+{% block body %}
+<a href="/courses-list/?id={{id}}">назад к курсам</a>
+<h4>Создание курса для категории "{{name}}"</h4>
+<form method="post">
+    <div class="form-row align-items-center">
+        <div class="col-sm-2 my-1">
+            <label class="sr-only" for="inlineFormInputName">Название</label>
+            <input class="form-control" id="inlineFormInputName" placeholder="Название" type="text" name="name">
+        </div>
+        <div class="col-auto my-1">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
