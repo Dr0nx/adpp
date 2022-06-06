@@ -9,27 +9,20 @@ site = Engine()
 routes = dict()
 
 
-# Класс-контроллер - Главная страница
-# @AppRoute(routes=routes, url='/')
-# class Index:
-#
-#     @debug
-#     def __call__(self, request):
-#         return '200 OK', render('index.html', objects_list=site.categories)
-
-
 @AppRoute(routes=routes, url='/')
 class Index(ListView):
     queryset = site.categories
     template_name = 'index.html'
 
+    # @debug
+    # def dispatch(self, *args, **kwargs):
+    #     # any custom dispatch code, or just...
+    #     super().dispatch(*args, **kwargs)
 
-# Класс-контроллер - Страница "Контакты"
+
 @AppRoute(routes=routes, url='/contacts/')
-class About:
-
-    def __call__(self, request):
-        return '200 OK', render('contacts.html')
+class About(ListView):
+    template_name = 'contacts.html'
 
 
 # Класс-контроллер - Страница "Расписания"
@@ -52,8 +45,7 @@ class CoursesList:
     @debug
     def __call__(self, request):
         try:
-            category = site.find_category_by_id(
-                int(request['request_params']['id']))
+            category = site.find_category_by_id(int(request['request_params']['id']))
             return '200 OK', render('course_list.html',
                                     objects_list=category.courses,
                                     name=category.name,
