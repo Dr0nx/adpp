@@ -7,3 +7,4 @@
 [Урок 3. Принципы проектирования](https://github.com/Dr0nx/adpp/tree/lesson_3/lesson_3/) <br>
 [Урок 4. Порождающие паттерны](https://github.com/Dr0nx/adpp/tree/lesson_4/lesson_4/) <br>
 [Урок 5. Структурные паттерны](https://github.com/Dr0nx/adpp/tree/lesson_5/lesson_5/) <br>
+[Урок 6. Поведенческие паттерны](https://github.com/Dr0nx/adpp/tree/lesson_6/lesson_6/) <br>
