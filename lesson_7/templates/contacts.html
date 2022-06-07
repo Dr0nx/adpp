@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Контакты{% endblock %}
+{% block style %}{% include "inc-style.html" %}{% endblock %}
+{% block menu %}{% include "inc-menu.html" %}{% endblock %}
+{% block body %}
+<form action="" method="post">
+    <div class="form-group">
+        <label for="subject">Тема сообщения:</label>
+        <input type="text" class="form-control" id="subject" placeholder="Различный текст" name="subject">
+    </div>
+    <div class="form-group">
+        <label for="text">Текст:</label>
+        <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введи email"
+               name="email">
+    </div>
+    <button type="submit" value="Submit" class="btn btn-primary">Поехали!</button>
+</form>
+{% endblock %}

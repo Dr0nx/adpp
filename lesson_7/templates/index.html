@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Главная страница
+{% endblock %}
+{% block style %}
+{% include "inc-style.html" %}
+{% endblock %}
+{% block menu %}
+{% include "inc-menu.html" %}
+{% endblock %}
+{% block body %}
+<br>
+<p>
+    <a href="/create-category/" class="btn btn-outline-primary">Создать новую категорию</a>
+</p>
+<h4>Список существующих категорий</h4>
+<ul class="list-group">
+    {% for item in objects_list %}
+    <li class="list-group-item">
+        <b>{{item.name}}<br></b>
+        <span>Количество курсов: <span class="badge badge-primary badge-pill">{{item.course_count()}}</span><br>
+        <a href="/courses-list/?id={{item.id}}">Показать курсы</a>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<a href="/student-list/" class="btn btn-outline-primary">Список студентов</a>
+<a href="/create-student/" class="btn btn-outline-primary">Создать студента</a>
+<a href="/add-student/" class="btn btn-outline-primary">Добавить студента на курс</a>
+{% endblock %}
