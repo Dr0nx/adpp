@@ -1,14 +1,18 @@
 from datetime import date
 
+from components.unit_of_work import UnitOfWork
 from components.cbv import CreateView, ListView
 from components.decorators import AppRoute, debug
-from components.models import Engine
+from components.models import Engine, MapperRegistry
 from dr0n_framework.templator import render
 
 site = Engine()
 routes = dict()
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
 
 
+# Класс-контроллер - Главная страница
 @AppRoute(routes=routes, url='/')
 class Index(ListView):
     queryset = site.categories
@@ -116,12 +120,10 @@ class CreateCategory:
 
             site.categories.append(new_category)
 
-            return '200 OK', render('index.html',
-                                    objects_list=site.categories)
+            return '200 OK', render('index.html', objects_list=site.categories)
         else:
             categories = site.categories
-            return '200 OK', render('create_category.html',
-                                    categories=categories)
+            return '200 OK', render('create_category.html', categories=categories)
 
 
 # Класс-контроллер - Страница "Список категорий"
@@ -135,19 +137,14 @@ class CategoryList:
 
 
 # Класс-контроллер - Страница "Список студентов"
-
-# @AppRoute(routes=routes, url='/student-list/')
-# class StudentListView(ListView):
-#     queryset = site.students
-#     template_name = 'student_list.html'
-
 @AppRoute(routes=routes, url='/student-list/')
-class StudentListView:
+class StudentListView(ListView):
+    template_name = 'student_list.html'
 
     @debug
-    def __call__(self, request):
-        return '200 OK', render('student_list.html',
-                                objects_list=site.students)
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('student')
+        return mapper.all()
 
 
 # Класс-контроллер - Страница "Создать студента"
@@ -161,6 +158,8 @@ class StudentCreateView(CreateView):
         name = site.decode_value(name)
         new_obj = site.create_user('student', name)
         site.students.append(new_obj)
+        new_obj.mark_new()
+        UnitOfWork.get_current().commit()
 
 
 # Класс-контроллер - Страница "Добавить студента на курс"
