@@ -8,3 +8,4 @@
 [Урок 4. Порождающие паттерны](https://github.com/Dr0nx/adpp/tree/lesson_4/lesson_4/) <br>
 [Урок 5. Структурные паттерны](https://github.com/Dr0nx/adpp/tree/lesson_5/lesson_5/) <br>
 [Урок 6. Поведенческие паттерны](https://github.com/Dr0nx/adpp/tree/lesson_6/lesson_6/) <br>
+[Урок 7. Архитектурные системные паттерны](https://github.com/Dr0nx/adpp/tree/lesson_7/lesson_7/) <br>
