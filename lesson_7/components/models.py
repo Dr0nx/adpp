@@ -46,27 +46,27 @@ class Course:
         student.courses.append(self)
 
 
-# # Класс-Интерактивный курс
-# class InteractiveCourse(Course):
-#     pass
-#
-#
-# # Класс-Курс в записи
-# class RecordCourse(Course):
-#     pass
-#
-#
-# # Класс-Фабрика курсов
-# class CourseFactory:
-#     types = {
-#         'interactive': InteractiveCourse,
-#         'record': RecordCourse
-#     }
-#
-#     # порождающий паттерн Фабричный метод
-#     @classmethod
-#     def create_factory(cls, type_, name, category):
-#         return cls.types[type_](name, category)
+# Класс-Интерактивный курс
+class InteractiveCourse(Course):
+    pass
+
+
+# Класс-Курс в записи
+class RecordCourse(Course):
+    pass
+
+
+# Класс-Фабрика курсов
+class CourseFactory:
+    types = {
+        'interactive': InteractiveCourse,
+        'record': RecordCourse
+    }
+
+    # порождающий паттерн Фабричный метод
+    @classmethod
+    def create_factory(cls, type_, name, category):
+        return cls.types[type_](name, category)
 
 
 # Класс-Категория
