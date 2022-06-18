@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Создание студента
+{% endblock %}
+{% block menu %}
+{% include "inc-menu.html" %}
+{% endblock %}
+{% block body %}
+<div>
+    <a href="/">назад на главную</a>
+</div>
+<br>
+<p>
+    <a href="/create-student/" class="btn btn-outline-primary">Создать студента</a>
+    <a href="/add-student/" class="btn btn-outline-primary">Добавить студента на курс</a>
+</p>
+<h4>Создание студента</h4>
+<!--<form method="post" action="/student-list/">-->
+<form method="post">
+    <div class="form-row align-items-center">
+        <div class="col-sm-2 my-1">
+            <label class="sr-only" for="inlineFormInputName">Название</label>
+            <input class="form-control" id="inlineFormInputName" placeholder="Название" type="text" name="name">
+        </div>
+        <div class="col-auto my-1">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
