@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/lesson_9/adpp.sqlite
+/lesson_7/adpp.sqlite
